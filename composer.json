@@ -1,0 +1,54 @@
+{
+    "name": "laraditz/permission-plus",
+    "description": "Laravel permission management for the lazy.",
+    "keywords": [
+        "laraditz",
+        "permission-plus"
+    ],
+    "homepage": "https://github.com/laraditz/permission-plus",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Raditz Farhan",
+            "email": "raditzfarhan@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "illuminate/support": "^8.0||^9.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laraditz\\PermissionPlus\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Laraditz\\PermissionPlus\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Laraditz\\PermissionPlus\\PermissionPlusServiceProvider"
+            ],
+            "aliases": {
+                "PermissionPlus": "Laraditz\\PermissionPlus\\PermissionPlusFacade"
+            }
+        }
+    }
+}
