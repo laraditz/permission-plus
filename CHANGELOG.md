@@ -1,7 +1,11 @@
 # Changelog
 
-All notable changes to `permission-plus` will be documented in this file
+All notable changes to `laraditz/permission-plus` will be documented in this file
 
-## 1.0.0 - 201X-XX-XX
+## 0.0.0 - 2023-02-24
 
-- initial release
+- Initial release
+
+Added
+- User able to generate routes.
+- User able to manage permissions via provided UI.
