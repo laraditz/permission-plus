@@ -4,10 +4,14 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/laraditz/permission-plus.svg?style=flat-square)](https://packagist.org/packages/laraditz/permission-plus)
 ![GitHub Actions](https://github.com/laraditz/permission-plus/actions/workflows/main.yml/badge.svg)
 
-Laravel permission management for the lazy. The permission plus is a RRBAC (Role/Route Based Access Control) which is a method to restrict access control based on the application routes and roles. (Warning: This package is still in an early stage of development and may contains bugs).
+Laravel permission management for the lazy. The permission plus is a RRBAC (Role/Route Based Access Control) which is a method to restrict access control based on the application routes and roles. (Warning: This package is still in an early stage of development and may contain bugs).
 
 ![screenshot](screenshot/main.png "Permission Plus")
 
+## Prerequisites
+- PHP 8.0+
+- Laravel v8.0+
+- Spatie Laravel Permission V5
 ## Installation
 
 You can install the package via composer:
@@ -43,7 +47,7 @@ php artisan vendor:publish --provider="Laraditz\PermissionPlus\PermissionPlusSer
 ```
 
 ## Usage
-After login, go to `/permission-plus/permissions` to manage your permission and you will below page. You may click `Generate` button to generate all routes in your applications to start adding permissions. 
+After login, go to `/permission-plus/permissions` to manage your permission and you will see below page. You may click `Generate` button to generate all routes in your applications to start adding permissions. 
 
 ![screenshot 1](screenshot/1.png "Permission Plus List Page")
 
@@ -61,6 +65,18 @@ public function canAccessPermissionPlus(): bool
     return str_ends_with($this->email, '@yourdomain.com') && $this->hasVerifiedEmail();
 }
 ```
+
+### To Do
+- [ ] Add search
+- [ ] Add documentation
+- [ ] Add test
+- [ ] Permission for resource owner
+- [ ] Auto-detect available routes
+- [ ] Make a more user-friendly UI
+- [ ] Optimize layout for mobile view
+- [ ] Add permission for individual user
+- [ ] Refactor code
+
 
 ### Testing
 
