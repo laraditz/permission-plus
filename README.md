@@ -4,7 +4,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/laraditz/permission-plus.svg?style=flat-square)](https://packagist.org/packages/laraditz/permission-plus)
 ![GitHub Actions](https://github.com/laraditz/permission-plus/actions/workflows/main.yml/badge.svg)
 
-Laravel permission management for the lazy. The permission plus is a RRBAC (Role/Route Based Access Control) which is method to restrict access control based on the application route and roles.
+Laravel permission management for the lazy. The permission plus is a RRBAC (Role/Route Based Access Control) which is a method to restrict access control based on the application routes and roles. (Warning: This package is still in an early stage of development and may contains bugs).
 
 ![screenshot](screenshot/main.png "Permission Plus")
 
