@@ -20,6 +20,12 @@ If you don't have one, you may create a new user account to be able to access th
 
 
 ## Setup
+Run the migration command to create the necessary database table.
+
+```sh
+php artisan migrate
+```
+
 Add `HasPermissionPlus` trait to your `User` model.
 
 ```php
@@ -29,6 +35,11 @@ class User extends Authenticatable
 {
     use HasPermissionPlus;
 }
+```
+
+(Optional) You can publish the config file via this command:
+```sh
+php artisan vendor:publish --provider="Laraditz\PermissionPlus\PermissionPlusServiceProvider" --tag="config"
 ```
 
 ## Usage
