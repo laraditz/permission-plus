@@ -46,6 +46,14 @@ class User extends Authenticatable
 php artisan vendor:publish --provider="Laraditz\PermissionPlus\PermissionPlusServiceProvider" --tag="config"
 ```
 
+(Optional) You may add below code to `resources/views/layouts/navigation.blade.php` file after `Dashboard` navigation link so that the Permission Plus menu appears in your top navigation.
+
+```html
+<x-nav-link :href="route('permission-plus.permissions.index')" :active="request()->routeIs('permission-plus.permissions.index')">
+    {{ __('Permissions') }}
+</x-nav-link>
+```
+
 ## Usage
 After login, go to `/permission-plus/permissions` to manage your permission and you will see below page. You may click `Generate` button to generate all routes in your applications to start adding permissions. 
 
