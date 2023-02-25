@@ -75,7 +75,7 @@ class PermissionPlus
     private function getPermissionName($route)
     {
         if ($routeName = $route->getName()) {
-            $name = Str::of($routeName)->replace(['.', '-'], ' ')->title();
+            $name = Str::of($routeName)->snake('-')->replace(['.', '-'], ' ')->title();
 
             if (Str::endsWith($name, ['Create', 'Store', 'Show', 'Edit', 'Update', 'Destroy'])) {
                 $name = Str::singular(Str::afterLast($name, ' ') . ' ' . Str::beforeLast($name, ' '));
