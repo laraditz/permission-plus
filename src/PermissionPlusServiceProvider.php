@@ -30,8 +30,10 @@ class PermissionPlusServiceProvider extends ServiceProvider
         $router->aliasMiddleware('permission.plus', PermissionPlusMiddleware::class);
 
         if (config('permission-plus.global_middleware')) {
-            $router->pushMiddlewareToGroup('web', PermissionPlusMiddleware::class);
-            $router->pushMiddlewareToGroup('api', PermissionPlusMiddleware::class);
+            $this->app->booted(function () use ($router) {
+                $router->pushMiddlewareToGroup('web', PermissionPlusMiddleware::class);
+                $router->pushMiddlewareToGroup('api', PermissionPlusMiddleware::class);
+            });
         }
 
 
