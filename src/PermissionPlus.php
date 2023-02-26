@@ -60,16 +60,15 @@ class PermissionPlus
         if ($routeName = $route->getName()) {
             $name = Str::of($routeName)->snake('-')->replace(['.', '-'], ' ')->title();
         } elseif ($route->uri) {
+
             $name = Str::of($route->uri)->snake('-')->replace(['/', '-'], ' ')->title();
         }
 
         if ($name && Str::endsWith($name, ['Create', 'Store', 'Show', 'Edit', 'Update', 'Destroy'])) {
             $name = Str::singular(Str::afterLast($name, ' ') . ' ' . Str::beforeLast($name, ' '));
-
-            return $name;
         }
 
-        return $route->uri;
+        return $name ?? $route->uri;
     }
 
     private function isAuthRoutes($middlewares)
