@@ -12,9 +12,8 @@ class PermissionPlus
 {
     public function generatePermissions(bool $overwrite = false)
     {
-        // dd(Route::getRoutes());
         $routes = collect(Route::getRoutes())->map(function ($route) use ($overwrite) {
-            // dd($allGuards);
+
             $action = $route->getAction();
             $middlewares = data_get($action, 'middleware');
             $route_name = $route->getName() ?? data_get($action, 'as');
@@ -25,28 +24,8 @@ class PermissionPlus
 
             if ($this->isRouteExcluded($uri, $middlewares)) return;
 
-            // if (!$this->isAuthRoutes($middlewares)) return;
-            // if ($action_name === 'Closure') {
-            //     dd($route, $action, $middlewares, $route_name, $uri, $action_name);
-            // }
-            // if ($action_name === 'Closure') return;
-
-            // dump($route->methods(), $uri, $action_name, $action);
-            // if (Str::startsWith($uri, 'articles')) {
-            //     dump($route);
-            // }
-
             $allow_all = $this->isAuthRoutes($middlewares) ? Affirmative::No : Affirmative::Yes;
             $allow_guest = $this->isGuestRoutes($middlewares) ? Affirmative::Yes : Affirmative::No;
-
-            // dd($route);
-            // if ($uri == 'register' || $uri == 'api/user' || $uri == 'logout') {
-            //     dump($route);
-            // }
-
-            // if ($uri == 'login') {
-            //     dd($route);
-            // }
 
             $permissionPlus =  $this->getPermissionFromRoute($route);
 
@@ -76,12 +55,16 @@ class PermissionPlus
 
     private function getPermissionName($route)
     {
+        $name = null;
+
         if ($routeName = $route->getName()) {
             $name = Str::of($routeName)->snake('-')->replace(['.', '-'], ' ')->title();
+        } elseif ($route->uri) {
+            $name = Str::of($route->uri)->snake('-')->replace(['/', '-'], ' ')->title();
+        }
 
-            if (Str::endsWith($name, ['Create', 'Store', 'Show', 'Edit', 'Update', 'Destroy'])) {
-                $name = Str::singular(Str::afterLast($name, ' ') . ' ' . Str::beforeLast($name, ' '));
-            }
+        if ($name && Str::endsWith($name, ['Create', 'Store', 'Show', 'Edit', 'Update', 'Destroy'])) {
+            $name = Str::singular(Str::afterLast($name, ' ') . ' ' . Str::beforeLast($name, ' '));
 
             return $name;
         }
