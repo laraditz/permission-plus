@@ -56,8 +56,9 @@ class PermissionPlus
     private function getPermissionName($route)
     {
         $name = null;
+        $routeName = $route->getName();
 
-        if ($routeName = $route->getName()) {
+        if ($routeName && !Str::startsWith($routeName, 'generated::')) {
             $name = Str::of($routeName)->snake('-')->replace(['.', '-'], ' ')->title();
         } elseif ($route->uri && $route->uri !== '/') {
             $name = Str::of($route->uri)->snake('-')->replace(['/', '-'], ' ')->title();
