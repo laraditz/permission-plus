@@ -2,20 +2,20 @@
 
 namespace Laraditz\PermissionPlus\Enums;
 
-enum Affirmative: int
+class Affirmative
 {
-    case Yes = 1;
-    case No = 0;
+    const Yes = 1;
+    const No = 0;
 
     public static function toArray(): array
     {
         return [
             [
-                'id' => static::Yes,
+                'id' => self::Yes,
                 'label' => 'Yes',
             ],
             [
-                'id' => static::No,
+                'id' => self::No,
                 'label' => 'No',
 
             ],

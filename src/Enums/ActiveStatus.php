@@ -2,20 +2,20 @@
 
 namespace Laraditz\PermissionPlus\Enums;
 
-enum ActiveStatus: int
+class ActiveStatus
 {
-    case Active = 1;
-    case Inactive = 0;
+    const Active = 1;
+    const Inactive = 0;
 
     public static function toArray(): array
     {
         return [
             [
-                'id' => static::Active,
+                'id' => self::Active,
                 'label' => 'Active',
             ],
             [
-                'id' => static::Inactive,
+                'id' => self::Inactive,
                 'label' => 'Inactive',
 
             ],
