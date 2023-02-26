@@ -59,9 +59,10 @@ class PermissionPlus
 
         if ($routeName = $route->getName()) {
             $name = Str::of($routeName)->snake('-')->replace(['.', '-'], ' ')->title();
-        } elseif ($route->uri) {
-
+        } elseif ($route->uri && $route->uri !== '/') {
             $name = Str::of($route->uri)->snake('-')->replace(['/', '-'], ' ')->title();
+        } elseif ($route->uri === '/') {
+            $name = 'Home';
         }
 
         if ($name && Str::endsWith($name, ['Create', 'Store', 'Show', 'Edit', 'Update', 'Destroy'])) {
