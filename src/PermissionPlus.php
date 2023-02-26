@@ -4,6 +4,8 @@ namespace Laraditz\PermissionPlus;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
+use Laraditz\PermissionPlus\Enums\ActiveStatus;
+use Laraditz\PermissionPlus\Enums\Affirmative;
 use Laraditz\PermissionPlus\Models\PermissionPlus as PermissionPlusModel;
 
 class PermissionPlus
@@ -34,8 +36,8 @@ class PermissionPlus
             //     dump($route);
             // }
 
-            $allow_all = $this->isAuthRoutes($middlewares) ? 0 : 1;
-            $allow_guest = $this->isGuestRoutes($middlewares) ? 1 : 0;
+            $allow_all = $this->isAuthRoutes($middlewares) ? Affirmative::No : Affirmative::Yes;
+            $allow_guest = $this->isGuestRoutes($middlewares) ? Affirmative::Yes : Affirmative::No;
 
             // dd($route);
             // if ($uri == 'register' || $uri == 'api/user' || $uri == 'logout') {
@@ -56,7 +58,7 @@ class PermissionPlus
                     'route_name' => $route_name,
                     'allow_all' => $overwrite ? $allow_all : $permissionPlus->allow_all ?? $allow_all,
                     'allow_guest' => $overwrite ? $allow_guest : $permissionPlus->allow_guest ?? $allow_guest,
-                    'is_active' => $permissionPlus->is_active ?? 1,
+                    'is_active' => $permissionPlus->is_active ?? ActiveStatus::Active,
                 ]);
             } else {
                 PermissionPlusModel::create([

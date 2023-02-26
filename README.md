@@ -83,6 +83,7 @@ public function canAccessPermissionPlus(): bool
 - [ ] Make a more user-friendly UI
 - [ ] Optimize layout for mobile view
 - [ ] Add permission for individual user
+- [ ] Able to change sorting order from UI
 - [ ] Refactor code
 
 

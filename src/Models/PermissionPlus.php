@@ -23,6 +23,18 @@ class PermissionPlus extends Model
         'methods' => 'json',
     ];
 
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            $model->sort_order = $model->max('sort_order') + 1;
+        });
+    }
+
     public function roles()
     {
         return $this->belongsToMany(Role::class);
