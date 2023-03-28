@@ -22,7 +22,7 @@
                         <x-permission-plus::primary-button >Generate</x-permission-plus::primary-button >
                     </form>
                     <div>
-                    <x-permission-plus::primary-link href="{{ route('permission-plus.permissions.create')}}">Create</x-permission-plus::primary-link >
+                    <x-permission-plus::primary-link href="{{ route('permission-plus.permissions.create', request()->query())}}">Create</x-permission-plus::primary-link >
                 </div>
 
             </div>
@@ -35,6 +35,16 @@
             {{ session('message') }}
         </div>
         @endif
+
+        <form method="GET" action="{{ route('permission-plus.permissions.index') }}">
+            <div class="flex flex-col sm:flex-row gap-x-4 mb-4 content-center items-center">
+                <input placeholder="Enter search terms" class="flex-1 block w-full mt-1 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400  focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" name="search" value="{{ request()->search }}">
+                <div class="flex w-full sm:w-auto mt-4 sm:mt-0 sm:justify-center justify-start content-center items-center">
+                    <x-permission-plus::primary-button>Search</x-permission-plus::primary-button >
+                    <x-permission-plus::primary-link href="{{ route('permission-plus.permissions.index')}}" class="ml-2">Reset</x-permission-plus::primary-link >
+                </div>
+            </div>
+        </form>
 
         <div class="flex flex-col">
             <div class="overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
@@ -98,7 +108,8 @@
 
                                 <td class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 ">
                                 <div class="flex justify-center gap-2 content-center items-center">
-                                    <a href="{{ route('permission-plus.permissions.edit', $permission->id) }}" class="text-indigo-600 hover:text-indigo-900 inline-block">
+
+                                    <a href="{{ route('permission-plus.permissions.edit', [ 'permission'=>$permission->id] + request()->query() ) }}" class="text-indigo-600 hover:text-indigo-900 inline-block">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                         </svg>

@@ -16,14 +16,14 @@
             </ul>
             @endif
 
-            <form method="POST" action="{{ route('permission-plus.permissions.update', $permission->id) }}">
+            <form method="POST" action="{{ route('permission-plus.permissions.update', ['permission'=>$permission->id] + request()->query()) }}">
                 @csrf
                 @method('PUT')
 
                 <div>
                     <x-permission-plus::label>Name</x-permission-plus::label>
 
-                    <input class="block w-full mt-1 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-right focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" name="name" placeholder="180" value="{{old('name', $permission->name)}}">
+                    <input class="block w-full mt-1 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-right focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" name="name" value="{{old('name', $permission->name)}}">
                     @error('name')
                     <span class="text-red-600 text-sm">
                         {{ $message }}
@@ -146,7 +146,7 @@
 
                 <div class="flex items-center justify-start mt-6">
                     <x-permission-plus::primary-button >Update</x-permission-plus::primary-button >
-                    <x-permission-plus::primary-link href="{{ route('permission-plus.permissions.index')}}" class="ml-2">Back</x-permission-plus::primary-link >
+                    <x-permission-plus::primary-link href="{{ route('permission-plus.permissions.index', request()->query())}}" class="ml-2">Back</x-permission-plus::primary-link >
                 </div>
             </form>
         </div>

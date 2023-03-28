@@ -18,7 +18,7 @@
             </div>
             @endif
 
-            <form method="POST" action="{{ route('permission-plus.permissions.store') }}">
+            <form method="POST" action="{{ route('permission-plus.permissions.store', request()->query()) }}">
                 @csrf
 
                 <div>
@@ -153,7 +153,7 @@
 
                 <div class="flex items-center justify-start mt-6">
                     <x-permission-plus::primary-button >Create</x-permission-plus::primary-button >
-                    <x-permission-plus::primary-link href="{{ route('permission-plus.permissions.index')}}" class="ml-2">Back</x-permission-plus::primary-link >
+                    <x-permission-plus::primary-link href="{{ route('permission-plus.permissions.index', request()->query())}}" class="ml-2">Back</x-permission-plus::primary-link >
                 </div>
             </form>
         </div>

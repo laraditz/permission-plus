@@ -2,8 +2,10 @@
 
 namespace Laraditz\PermissionPlus\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class PermissionPlus extends Model
@@ -71,5 +73,13 @@ class PermissionPlus extends Model
         }
 
         return 'Denied';
+    }
+
+    public function scopeSearch(Builder $query, Request $request): void
+    {
+        if ($request->has('search')) {
+            $query->where('name', 'REGEXP', $request->search)
+                ->orWhere('uri', 'REGEXP', $request->search);
+        }
     }
 }

@@ -28,7 +28,13 @@ class PermissionController extends Controller
         // $permission = \Spatie\Permission\Models\Permission::create(['name' => 'edit articles']);
         // $allGuards = collect(array_keys(config('auth.guards')))->mapWithKeys(fn ($item) => [$item => false]);
 
-        $permissions = PermissionPlus::paginate();
+        $query = PermissionPlus::query();
+
+        $query->search($request);
+
+        // $query->dd();
+
+        $permissions = $query->paginate();
 
         return view(config('permission-plus.prefix') . '::permissions.index', compact('permissions'));
     }
@@ -60,7 +66,7 @@ class PermissionController extends Controller
             $permission->roles()->sync($request->roles);
         }
 
-        return redirect()->route(config('permission-plus.prefix') . '.permissions.index')->with('success', 'Permission has been created successfully.');
+        return redirect()->route(config('permission-plus.prefix') . '.permissions.index', $request->query())->with('success', 'Permission has been created successfully.');
     }
 
 
@@ -87,12 +93,11 @@ class PermissionController extends Controller
      */
     public function update(UpdatePermissionRequest $request, PermissionPlus $permission)
     {
-        // dd($permission);
         $permission->update($request->validated());
 
         $permission->roles()->sync($request->roles);
 
-        return redirect()->route(config('permission-plus.prefix') . '.permissions.index')->with('message', 'Permission Updated Successfully');
+        return redirect()->route(config('permission-plus.prefix') . '.permissions.index', $request->query())->with('message', 'Permission Updated Successfully');
     }
 
     /**
