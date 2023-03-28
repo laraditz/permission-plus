@@ -154,3 +154,8 @@
 
     </div>
 </x-app-layout>
+<style>
+nav[role=navigation] > div > div > span > span[aria-current=page] > span {
+    background-color: #e4e4e4!important
+}
+</style>
