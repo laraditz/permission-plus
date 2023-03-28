@@ -133,7 +133,13 @@
                             </tr>
                            @empty
                            <tr >
-                                <td colspan="100%" class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-center">Click <strong>Generate</strong> button to generate permissions.</td>
+                                <td colspan="100%" class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
+                                @if(request()->has('search'))
+                                No search result.
+                                @else
+                                Click <strong>Generate</strong> button to generate permissions.
+                                @endif
+                                </td>
                            </tr>
                            @endforelse
                         </tbody>
