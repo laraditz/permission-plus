@@ -36,6 +36,8 @@ class PermissionController extends Controller
 
         $permissions = $query->paginate();
 
+        $permissions->appends($request->query());
+
         return view(config('permission-plus.prefix') . '::permissions.index', compact('permissions'));
     }
 
