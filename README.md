@@ -75,7 +75,7 @@ public function canAccessPermissionPlus(): bool
 ```
 
 ### To Do
-- [ ] Add search
+- [x] Add search
 - [ ] Add documentation
 - [ ] Add test
 - [ ] Permission for resource owner
